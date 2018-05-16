@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Iterables & Looping</title>
+</head>
+<body>
+<script>
+  /* An iterable is anything you can loop over, such as 
+     arrays, strings, map, set, or generator. */
+
+  const cuts = ['Chuck', 'Brisket', 'Shank', 'Short Rib'];
+
+  // example 1 ... an old for loop
+  for (let i = 0; i < cuts.length; i++) {
+    console.log(cuts[i]);
+  }
+
+  // example 2 ... forEach (there is no abort or break or continue)
+  cuts.forEach((cut) => {
+    console.log(cut);
+  });
+
+  // example 3 .... for in
+  // Note this will also loop over anything that gets added to the 
+  // Array prototype as well, functions, etc.
+
+  // Stated differently this custom function would get looped over
+  // in the loop below (including Moo Tools, which modifies the
+  //  prototype)
+   Array.prototype.shuffle = function() {
+     var i = this.length, j, temp;
+     if ( i == 0 ) return this;
+     while ( --i ) {
+      j = Math.floor( Math.random() * ( i + 1 ) );
+      temp = this[i];
+      this[i] = this[j];
+      this[j] = temp;
+    }
+    return this;
+  };
+
+  for (const index in cuts) {
+    console.log(cuts[index]);
+  }
+
+  // Example 4 .... For of (which can be used with any iterable)
+  // and break or continue are available
+  for (const cut of cuts) {
+    console.log(cut);
+    if (cut === 'Brisket')
+      break;
+  }
+
+</script>
+</body>
+</html>
