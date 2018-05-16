@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<p>
+		Hi I'm a paragraph 1
+	</p>
+	<p>
+			Hi I'm a paragraph 2
+	</p>
+	<p>
+			Hi I'm a paragraph 3
+	</p>
+	<script>
+		/* 
+		 * Example 1 .... Usage of for-of loop with an array destructuring
+		 */
+		const cuts = ['Chuck', 'Brisket', 'Shank', 'Short Rib'];
+
+		const meat = cuts.entries; // meat points at an ArrayIterator
+
+		// We can use array destructuring, because each item from cuts.entries 
+		// returns an array (the index and in this case the value (string) of each
+		// entry, which we assign to the vars i and cut in this example)
+		for (const [i, cut] of cuts.entries()) {
+			console.log(`${cut} is the ${i} item`);
+		}
+
+		/*
+		 * Example 2 .... adding up arguments array-ish object
+		 */
+		// arguments is not an array. It just has length, and that is it.
+		// Thus, we can't use the regular array operations, but we can
+		// use a for-of loop rather than converting to an array.
+
+		// this function take unlimited number of args
+		function addUpNumbers() {
+			console.log(arguments);
+
+			let total = 0;
+			for (const num of arguments) {
+				total += num;
+			}
+			console.log(total);
+			return total;
+		}
+
+		addUpNumbers(10,23,52,34,12,13,123);
+
+		/*
+		 * Example 3 .... Looping over a string
+		 */
+		const name = 'Richard Memory';
+		for (const char of name) {
+			console.log(char);
+		}
+
+		/* 
+		 * Example 4 .... Looping over a DOM collection such as a node list
+		 */
+		const paras = document.querySelectorAll('p');
+		for (const paragraph of paras) {
+			paragraph.addEventListener('click', function() {
+				console.log(this.textContent);
+			})
+		}
+		
+		
+	</script>
+
+</body>
+</html>
